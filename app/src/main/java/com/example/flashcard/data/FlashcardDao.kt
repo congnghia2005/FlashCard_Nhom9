@@ -9,6 +9,10 @@ interface FlashcardDao {
     @Query("SELECT * FROM flashcards")
     fun getAllFlashcards(): Flow<List<Flashcard>>
 
+<<<<<<< HEAD
+=======
+    // Lấy các thẻ có ngày review nhỏ hơn hoặc bằng thời gian truyền vào
+>>>>>>> origin/develop
     @Query("SELECT * FROM flashcards WHERE nextReviewDate <= :currentTime")
     fun getFlashcardsToReview(currentTime: Long): Flow<List<Flashcard>>
 
