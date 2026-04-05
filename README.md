@@ -2,13 +2,13 @@
 
 
 
-\## 📌 Description
+\##  Description
 
 Ứng dụng học từ vựng bằng flashcard
 
 
 
-\## 🚀 Features
+\##  Features
 
 \- Add flashcard
 
@@ -18,7 +18,7 @@
 
 
 
-\## 🛠 Tech
+\##  Tech
 
 \- Kotlin
 
