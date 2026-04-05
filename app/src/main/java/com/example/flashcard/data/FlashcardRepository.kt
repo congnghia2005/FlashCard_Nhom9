@@ -12,6 +12,10 @@ class FlashcardRepository(private val flashcardDao: FlashcardDao) {
         return flashcardDao.getFlashcardsToReview(System.currentTimeMillis())
     }
 
+    suspend fun insert(flashcard: Flashcard) {
+        flashcardDao.insert(flashcard)
+    }
+
     suspend fun addFlashcard(front: String, back: String) {
         val flashcard = Flashcard(front = front, back = back)
         flashcardDao.insertFlashcard(flashcard)

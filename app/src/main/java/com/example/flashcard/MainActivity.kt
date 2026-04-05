@@ -5,11 +5,8 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.Composable
-<<<<<<< HEAD
 import androidx.hilt.navigation.compose.hiltViewModel
-=======
 import androidx.lifecycle.viewmodel.compose.viewModel
->>>>>>> origin/develop
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -22,27 +19,29 @@ import com.example.flashcard.ui.screens.HomeScreen
 import com.example.flashcard.ui.screens.ReviewScreen
 import com.example.flashcard.ui.theme.FlashCardTheme
 import com.example.flashcard.worker.DailyReminderWorker
-<<<<<<< HEAD
+
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.concurrent.TimeUnit
 
 @AndroidEntryPoint
-=======
+
 import java.util.concurrent.TimeUnit
 
->>>>>>> origin/develop
+
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         
-<<<<<<< HEAD
-=======
-        // Lên lịch nhắc nhở học tập hàng ngày
->>>>>>> origin/develop
+
         scheduleDailyReminder()
 
         setContent {
+            val viewModel = FlashcardViewModel(LocalContext.current.applicationContext as Application)
+
+            LaunchedEffect(Unit) {
+                viewModel.fetchFlashcardsFromApi()
+            }
             FlashCardTheme {
                 FlashcardApp()
             }
@@ -65,13 +64,13 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun FlashcardApp() {
     val navController = rememberNavController()
-<<<<<<< HEAD
+
     // Sử dụng hiltViewModel() thay vì viewModel() để Hilt tự động inject
     val viewModel: FlashcardViewModel = hiltViewModel()
-=======
+
     // ViewModel sẽ quản lý dữ liệu và logic nghiệp vụ
     val viewModel: FlashcardViewModel = viewModel()
->>>>>>> origin/develop
+
 
     NavHost(navController = navController, startDestination = "home") {
         composable("home") {
