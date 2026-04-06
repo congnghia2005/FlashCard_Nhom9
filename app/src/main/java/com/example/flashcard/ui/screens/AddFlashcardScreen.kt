@@ -186,7 +186,7 @@ fun AddFlashcardScreen(
             ) {
                 Icon(Icons.Default.Save, null)
                 Spacer(Modifier.width(8.dp))
-                Text("Save Flashcards", fontWeight = FontWeight.Bold, fontSize = 16.sp)
+                Text("Save Flashcard", fontWeight = FontWeight.Bold, fontSize = 16.sp)
             }
         }
     }
