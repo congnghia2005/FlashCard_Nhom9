@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.Composable
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -18,17 +19,29 @@ import com.example.flashcard.ui.screens.HomeScreen
 import com.example.flashcard.ui.screens.ReviewScreen
 import com.example.flashcard.ui.theme.FlashCardTheme
 import com.example.flashcard.worker.DailyReminderWorker
+
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.concurrent.TimeUnit
+
+@AndroidEntryPoint
+
+import java.util.concurrent.TimeUnit
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         
-        // Lên lịch nhắc nhở học tập hàng ngày
+
         scheduleDailyReminder()
 
         setContent {
+            val viewModel = FlashcardViewModel(LocalContext.current.applicationContext as Application)
+
+            LaunchedEffect(Unit) {
+                viewModel.fetchFlashcardsFromApi()
+            }
             FlashCardTheme {
                 FlashcardApp()
             }
@@ -51,8 +64,13 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun FlashcardApp() {
     val navController = rememberNavController()
+
+    // Sử dụng hiltViewModel() thay vì viewModel() để Hilt tự động inject
+    val viewModel: FlashcardViewModel = hiltViewModel()
+
     // ViewModel sẽ quản lý dữ liệu và logic nghiệp vụ
     val viewModel: FlashcardViewModel = viewModel()
+
 
     NavHost(navController = navController, startDestination = "home") {
         composable("home") {
