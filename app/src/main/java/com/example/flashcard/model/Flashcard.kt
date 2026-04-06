@@ -8,7 +8,9 @@ data class Flashcard(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
     val front: String,
     val back: String,
+    val ownerId: String, // Username of the creator
     val deckId: Long = 0,
+    val imageUri: String? = null,
     
     // SM-2 Algorithm fields
     val interval: Int = 0, // Days until next review
