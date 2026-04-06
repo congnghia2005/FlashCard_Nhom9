@@ -2,15 +2,22 @@ package com.example.flashcard.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val Purple80 = Color(0xFFD0BCFF)
-val PurpleGrey80 = Color(0xFFCCC2DC)
-val Pink80 = Color(0xFFEFB8C8)
+// Premium Modern Palette
+val PrimaryModern = Color(0xFF6366F1) // Indigo 500
+val PrimaryDarkModern = Color(0xFF4F46E5) // Indigo 600
+val SecondaryModern = Color(0xFFEC4899) // Pink 500
+val TertiaryModern = Color(0xFF8B5CF6) // Violet 500
 
-val Purple40 = Color(0xFF6650a4)
-val PurpleGrey40 = Color(0xFF625b71)
-val Pink40 = Color(0xFF7D5260)
+val BackgroundLight = Color(0xFFF8FAFC) // Slate 50
+val SurfaceLight = Color(0xFFFFFFFF)
+val OnBackgroundLight = Color(0xFF0F172A) // Slate 900
 
-// Màu tùy chỉnh cho Flashcard của bạn
-val CardFrontColor = Color(0xFFFFFFFF)
-val git add .gitignore build.gradle.kts gradle.properties = Color(0xFFF3E5F5)
-val PrimaryPurple = Color(0xFF6200EE)
+val BackgroundDark = Color(0xFF0F172A) // Slate 900
+val SurfaceDark = Color(0xFF1E293B) // Slate 800
+val OnBackgroundDark = Color(0xFFF8FAFC)
+
+// Functional Colors
+val SuccessGreen = Color(0xFF10B981)
+val ErrorRed = Color(0xFFEF4444)
+val WarningOrange = Color(0xFFF59E0B)
+val InfoBlue = Color(0xFF3B82F6)

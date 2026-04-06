@@ -6,11 +6,14 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface FlashcardDao {
-    @Query("SELECT * FROM flashcards")
-    fun getAllFlashcards(): Flow<List<Flashcard>>
+    @Query("SELECT * FROM flashcards WHERE ownerId = :userId")
+    fun getFlashcardsByUser(userId: String): Flow<List<Flashcard>>
 
-    @Query("SELECT * FROM flashcards WHERE nextReviewDate <= :currentTime")
-    fun getFlashcardsToReview(currentTime: Long): Flow<List<Flashcard>>
+    @Query("SELECT * FROM flashcards WHERE deckId = :deckId")
+    fun getFlashcardsByDeck(deckId: Long): Flow<List<Flashcard>>
+
+    @Query("SELECT * FROM flashcards WHERE ownerId = :userId AND nextReviewDate <= :currentTime")
+    fun getFlashcardsToReviewByUser(userId: String, currentTime: Long): Flow<List<Flashcard>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertFlashcard(flashcard: Flashcard)
