@@ -2,9 +2,12 @@ package com.example.flashcard.ui
 
 import android.app.Application
 import android.content.Context
+<<<<<<< HEAD
 import android.util.Base64
 import android.util.Log
 import android.widget.Toast
+=======
+>>>>>>> 27d4e2849a9709f1e2be39e4ce2aed2922d414bf
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.flashcard.data.AppDatabase
@@ -14,6 +17,7 @@ import com.example.flashcard.model.Deck
 import com.example.flashcard.model.Flashcard
 import com.example.flashcard.model.User
 import com.example.flashcard.util.TtsManager
+<<<<<<< HEAD
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.firestore.FirebaseFirestore
@@ -30,22 +34,33 @@ data class SuggestedDeck(
     val icon: String,
     val shareCode: String
 )
+=======
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
+>>>>>>> 27d4e2849a9709f1e2be39e4ce2aed2922d414bf
 
 class FlashcardViewModel(application: Application) : AndroidViewModel(application) {
     private val database: AppDatabase = AppDatabase.getDatabase(application)
     private val repository: FlashcardRepository = FlashcardRepository(database.flashcardDao(), database.deckDao())
     private val userDao: UserDao = database.userDao()
     private val ttsManager: TtsManager = TtsManager(application)
+<<<<<<< HEAD
     private val gson = Gson()
     
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
     private val db: FirebaseFirestore = FirebaseFirestore.getInstance()
 
+=======
+    
+    // SharedPreferences to persist login
+>>>>>>> 27d4e2849a9709f1e2be39e4ce2aed2922d414bf
     private val prefs = application.getSharedPreferences("flashcard_prefs", Context.MODE_PRIVATE)
 
     private val _currentUser = MutableStateFlow<User?>(null)
     val currentUser: StateFlow<User?> = _currentUser
 
+<<<<<<< HEAD
     private val _isSyncing = MutableStateFlow(false)
     val isSyncing: StateFlow<Boolean> = _isSyncing
 
@@ -55,6 +70,8 @@ class FlashcardViewModel(application: Application) : AndroidViewModel(applicatio
         SuggestedDeck("Tiếng Hàn Giao Tiếp", "Câu chào hỏi cơ bản", "🇰🇷", "eyJuYW1lIjoiVGnhur9uZyBIw6BuIEdpYW8gVaeG6vHAiLCJjYXJkcyI6W3siZiI6IkFubnllb25nIiwiYiI6IlhpbiBjaMOgbyJ9LHsiZiI6IkthbXNhaGFtbmlkYSIsImIiOiJD4bqjbSDGoW4ifV19")
     )
 
+=======
+>>>>>>> 27d4e2849a9709f1e2be39e4ce2aed2922d414bf
     @OptIn(ExperimentalCoroutinesApi::class)
     val userDecks: StateFlow<List<Deck>> = _currentUser
         .flatMapLatest { user ->
@@ -80,6 +97,7 @@ class FlashcardViewModel(application: Application) : AndroidViewModel(applicatio
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
 
     init {
+<<<<<<< HEAD
         auth.currentUser?.let { firebaseUser ->
             _currentUser.value = User(firebaseUser.email ?: "", "", firebaseUser.displayName ?: "Người học")
         }
@@ -151,10 +169,25 @@ class FlashcardViewModel(application: Application) : AndroidViewModel(applicatio
                 Log.e("SYNC_ERROR", "Error: ${e.message}")
             } finally {
                 _isSyncing.value = false
+=======
+        // Tự động kiểm tra xem có ai đã đăng nhập chưa khi khởi tạo
+        checkLastLogin()
+    }
+
+    private fun checkLastLogin() {
+        val lastUser = prefs.getString("last_username", null)
+        if (lastUser != null) {
+            viewModelScope.launch {
+                val user = userDao.getUserByUsername(lastUser)
+                if (user != null) {
+                    _currentUser.value = user
+                }
+>>>>>>> 27d4e2849a9709f1e2be39e4ce2aed2922d414bf
             }
         }
     }
 
+<<<<<<< HEAD
     fun logout() {
         auth.signOut()
         _currentUser.value = null
@@ -182,10 +215,44 @@ class FlashcardViewModel(application: Application) : AndroidViewModel(applicatio
             }
             repository.deleteDeck(deck)
         }
+=======
+    fun login(username: String, password: String, onResult: (Boolean, String) -> Unit) {
+        viewModelScope.launch {
+            try {
+                val user = userDao.getUserByUsername(username)
+                if (user != null && user.passwordHash == password) {
+                    _currentUser.value = user
+                    // Lưu lại username để lần sau tự động đăng nhập
+                    prefs.edit().putString("last_username", username).apply()
+                    onResult(true, "Success")
+                } else onResult(false, "Invalid credentials")
+            } catch (e: Exception) { onResult(false, e.message ?: "Error") }
+        }
+    }
+
+    fun register(username: String, password: String, displayName: String, onResult: (Boolean, String) -> Unit) {
+        viewModelScope.launch {
+            try {
+                val existing = userDao.getUserByUsername(username)
+                if (existing != null) onResult(false, "Exists")
+                else {
+                    userDao.registerUser(User(username, password, displayName))
+                    onResult(true, "Success")
+                }
+            } catch (e: Exception) { onResult(false, e.message ?: "Error") }
+        }
+    }
+
+    fun logout() {
+        _currentUser.value = null
+        // Xóa lưu vết đăng nhập
+        prefs.edit().remove("last_username").apply()
+>>>>>>> 27d4e2849a9709f1e2be39e4ce2aed2922d414bf
     }
 
     fun createDeck(name: String) {
         val user = _currentUser.value ?: return
+<<<<<<< HEAD
         viewModelScope.launch { 
             repository.insertDeck(Deck(name = name, ownerId = user.username))
             syncData() 
@@ -264,6 +331,27 @@ class FlashcardViewModel(application: Application) : AndroidViewModel(applicatio
 
     fun updateFlashcard(flashcard: Flashcard) { viewModelScope.launch { repository.update(flashcard); syncData() } }
     fun updateAfterReview(flashcard: Flashcard, quality: Int) { viewModelScope.launch { repository.updateFlashcardAfterReview(flashcard, quality); syncData() } }
+=======
+        viewModelScope.launch {
+            repository.insertDeck(Deck(name = name, ownerId = user.username))
+        }
+    }
+
+    fun deleteDeck(deck: Deck) {
+        viewModelScope.launch { repository.deleteDeck(deck) }
+    }
+
+    fun addFlashcard(front: String, back: String, deckId: Long, imageUri: String?) {
+        val user = _currentUser.value ?: return
+        viewModelScope.launch {
+            repository.insert(Flashcard(front = front, back = back, ownerId = user.username, deckId = deckId, imageUri = imageUri))
+        }
+    }
+
+    fun updateFlashcard(flashcard: Flashcard) { viewModelScope.launch { repository.update(flashcard) } }
+    fun deleteFlashcard(flashcard: Flashcard) { viewModelScope.launch { repository.delete(flashcard) } }
+    fun updateAfterReview(flashcard: Flashcard, quality: Int) { viewModelScope.launch { repository.updateFlashcardAfterReview(flashcard, quality) } }
+>>>>>>> 27d4e2849a9709f1e2be39e4ce2aed2922d414bf
     fun speak(text: String) { ttsManager.speak(text) }
 
     override fun onCleared() {

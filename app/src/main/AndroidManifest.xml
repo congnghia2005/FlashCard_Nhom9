@@ -2,10 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+<<<<<<< HEAD
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
+=======
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+>>>>>>> 27d4e2849a9709f1e2be39e4ce2aed2922d414bf
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -28,4 +32,8 @@
         </activity>
     </application>
 
+<<<<<<< HEAD
 </manifest>
+=======
+</manifest>
+>>>>>>> 27d4e2849a9709f1e2be39e4ce2aed2922d414bf

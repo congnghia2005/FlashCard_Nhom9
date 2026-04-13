@@ -1,5 +1,6 @@
 package com.example.flashcard.data
 
+<<<<<<< HEAD
 import com.example.flashcard.model.Flashcard
 import com.example.flashcard.model.User
 import retrofit2.http.*
@@ -30,3 +31,12 @@ interface FlashcardApi {
 
 data class SharedDeckResponse(val deckName: String, val flashcards: List<Flashcard>)
 data class ApiResponse(val success: Boolean, val message: String)
+=======
+import retrofit2.http.GET
+
+interface FlashcardApi {
+
+    @GET("api.php?amount=10")
+    suspend fun getFlashcards(): ApiResponse
+}
+>>>>>>> 27d4e2849a9709f1e2be39e4ce2aed2922d414bf

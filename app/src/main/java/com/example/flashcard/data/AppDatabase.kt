@@ -8,7 +8,11 @@ import com.example.flashcard.model.Flashcard
 import com.example.flashcard.model.User
 import com.example.flashcard.model.Deck
 
+<<<<<<< HEAD
 @Database(entities = [Flashcard::class, User::class, Deck::class], version = 8, exportSchema = false)
+=======
+@Database(entities = [Flashcard::class, User::class, Deck::class], version = 4, exportSchema = false)
+>>>>>>> 27d4e2849a9709f1e2be39e4ce2aed2922d414bf
 abstract class AppDatabase : RoomDatabase() {
     abstract fun flashcardDao(): FlashcardDao
     abstract fun userDao(): UserDao
