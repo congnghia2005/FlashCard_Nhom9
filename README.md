@@ -11,3 +11,4 @@ Luồng dữ liệu (Data Flow) Quy trình xử lý của Người 3 (Hệ thố
 Thành phần tích hợp (Core Integrations) TtsManager (Text-to-Speech): Tích hợp engine phát âm của Android, hỗ trợ học ngoại ngữ trực quan. Coil Image Loader: Xử lý hiển thị ảnh minh họa từ URI hệ thống một cách tối ưu. SM-2 Algorithm: Logic cốt lõi tính toán lịch trình ôn tập khoa học.
 
 Hướng dẫn cài đặt & Chạy thử Clone repository: git clone https://github.com/congnghia2005/FlashCard_Nhom9.git Mở dự án bằng Android Studio Ladybug (hoặc mới hơn). Đảm bảo đã cài đặt SDK 35 (Android 15) và Compose Compiler tương ứng. Build dự án và chạy trên Emulator hoặc thiết bị thật (Khuyên dùng Android 10+).
+..... Hiiii
