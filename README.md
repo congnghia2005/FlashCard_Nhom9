@@ -68,7 +68,4 @@ Clone repository: git clone https://github.com/congnghia2005/FlashCard_Nhom9.git
 Mở dự án bằng Android Studio Ladybug (hoặc mới hơn).
 Đảm bảo đã cài đặt SDK 35 (Android 15) và Compose Compiler tương ứng.
 Build dự án và chạy trên Emulator hoặc thiết bị thật (Khuyên dùng Android 10+).
->>>>>>> 4fb8d511414f6615393af880d26c7d5ee5eb27fd
-=======
 
->>>>>>> origin/main
