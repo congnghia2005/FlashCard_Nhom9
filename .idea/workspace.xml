@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6fb6a6bf-1066-4eb3-a75d-9bdae8200f82" name="Changes" comment="" />
+    <list default="true" id="6fb6a6bf-1066-4eb3-a75d-9bdae8200f82" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -70,7 +73,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "feature/tts-trancongnghia",
+    "git-widget-placeholder": "Merging feature/cloudsync-trannguyenhoangnhat",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "D:/AndroidStudioProjects/FlashCard/FlashCard_Nhom9/build.gradle.kts",
     "project.structure.last.edited": "Project",
