@@ -3,6 +3,9 @@ FlashCard Smart Learn - Dự án Nhóm 9
 Ứng dụng học tập thông minh dựa trên phương pháp Flashcard, tích hợp thuật toán lặp lại ngắt quãng (SM-2), hình ảnh minh họa và phát âm (TTS).
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/main
 Cấu trúc Hệ thống (System Architecture) Dự án áp dụng mô hình MVVM chuẩn, chia làm 4 lớp chính: UI (Compose): Các màn hình chức năng (HomeScreen, ReviewScreen, AddFlashcardScreen, LoginScreen). ViewModel: Trung tâm điều phối logic (FlashcardViewModel), quản lý trạng thái UI qua StateFlow. Repository: Lớp trừu tượng hóa nguồn dữ liệu (FlashcardRepository, UserRepository), cung cấp dữ liệu sạch cho ViewModel. Data Source: Quản lý bởi Room Database (SQLite) cho dữ liệu cục bộ và Retrofit (nếu có) cho API.
 
 Cấu trúc Cơ sở dữ liệu (Database Schema) A. Thực thể User (Bảng: users) Lưu trữ thông tin định danh để cá nhân hóa kho dữ liệu cho từng người dùng. id (Long - Primary Key): Mã định danh tự động tăng cho mỗi tài khoản. username (String): Tên đăng nhập duy nhất của người dùng. passwordHash (String): Mật khẩu được lưu trữ dưới dạng mã hóa để đảm bảo bảo mật. B. Thực thể Deck / Folder (Bảng: decks) Dùng để phân loại và tổ chức các thẻ học theo chủ đề. id (Long - Primary Key): Mã định danh thư mục. userId (Long - Foreign Key): Liên kết với bảng users, đảm bảo người dùng chỉ nhìn thấy thư mục của chính mình. name (String): Tên chủ đề học tập (Ví dụ: "IELTS Vocabulary", "Kotlin Basics"). createdAt (Long): Thời gian tạo thư mục để sắp xếp theo thứ tự mới nhất. C. Thực thể Flashcard (Bảng: flashcards) Đây là bảng quan trọng nhất, chứa nội dung học tập và các thông số của thuật toán lặp lại ngắt quãng (SM-2). Thông tin nội dung: id (Long - Primary Key): Mã định danh thẻ. deckId (Long - Foreign Key): Liên kết với bảng decks để biết thẻ thuộc thư mục nào. front (String): Nội dung câu hỏi hoặc từ vựng (Mặt trước). back (String): Nội dung câu trả lời hoặc giải nghĩa (Mặt sau). imageUri (String?): Đường dẫn đến ảnh minh họa được lưu trong bộ nhớ máy (xử lý qua thư viện Coil). Thông số thuật toán SM-2 (Metadata): repetition (Int): Số lần người dùng đã trả lời đúng liên tiếp. interval (Int): Khoảng cách (số ngày) cho đến lần ôn tập tiếp theo. easinessFactor (Double): Độ dễ của thẻ (mặc định là 2.5), thay đổi dựa trên phản hồi của người dùng nextReviewDate (Long): Mốc thời gian (Timestamp) chính xác để hệ thống hiển thị thẻ vào danh sách ôn tập.
@@ -12,6 +15,7 @@ Luồng dữ liệu (Data Flow) Quy trình xử lý của Người 3 (Hệ thố
 Thành phần tích hợp (Core Integrations) TtsManager (Text-to-Speech): Tích hợp engine phát âm của Android, hỗ trợ học ngoại ngữ trực quan. Coil Image Loader: Xử lý hiển thị ảnh minh họa từ URI hệ thống một cách tối ưu. SM-2 Algorithm: Logic cốt lõi tính toán lịch trình ôn tập khoa học.
 
 Hướng dẫn cài đặt & Chạy thử Clone repository: git clone https://github.com/congnghia2005/FlashCard_Nhom9.git Mở dự án bằng Android Studio Ladybug (hoặc mới hơn). Đảm bảo đã cài đặt SDK 35 (Android 15) và Compose Compiler tương ứng. Build dự án và chạy trên Emulator hoặc thiết bị thật (Khuyên dùng Android 10+).
+<<<<<<< HEAD
 =======
 1. Cấu trúc Hệ thống (System Architecture)
 Dự án áp dụng mô hình MVVM chuẩn, chia làm 4 lớp chính:
@@ -65,3 +69,6 @@ Mở dự án bằng Android Studio Ladybug (hoặc mới hơn).
 Đảm bảo đã cài đặt SDK 35 (Android 15) và Compose Compiler tương ứng.
 Build dự án và chạy trên Emulator hoặc thiết bị thật (Khuyên dùng Android 10+).
 >>>>>>> 4fb8d511414f6615393af880d26c7d5ee5eb27fd
+=======
+
+>>>>>>> origin/main
